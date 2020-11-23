@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/adarshsuresh07/VRlab-backend/issues"
   },
-  "homepage": "https://github.com/adarshsuresh07/VRlab-backend#readme"
+  "homepage": "https://github.com/adarshsuresh07/VRlab-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
