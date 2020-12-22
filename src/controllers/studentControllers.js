@@ -1,4 +1,4 @@
-require("../db/db");
+// require("../db/db");
 const express = require("express");
 const Student = require("../models/student");
 
