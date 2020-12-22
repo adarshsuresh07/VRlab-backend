@@ -9,7 +9,9 @@ app.use(studentRouter);
 app.get("/", (req, res) => {
   res.send("Home");
 });
-
+app.get("/players", (req, res) => {
+  res.send("players");
+});
 app.listen(port, () => {
   console.log("server is running on port " + port);
 });
