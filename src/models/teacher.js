@@ -1,26 +1,32 @@
 const mongoose = require("mongoose");
 
 const teacherSchema = new mongoose.Schema({
-  name: {
+  fullname: {
     type: String,
     required: true,
-    trim: true,
   },
   email: {
     type: String,
     required: true,
-    trim: true,
-    unique: true,
   },
   password: {
     type: String,
     required: true,
-    trim: true,
-    minlength: 8,
   },
-
-  expAssigned: {
-    type: [String],
+  verified: {
+    type: Boolean,
+    default: false,
+  },
+  experiments_started: {
+    type: [{ id: mongoose.ObjectId }],
+  },
+  created_at: {
+    type: Date,
+    default: Date.now,
+  },
+  updated_at: {
+    type: Date,
+    default: Date.now,
   },
 });
 

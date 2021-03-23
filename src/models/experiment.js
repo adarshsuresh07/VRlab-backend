@@ -1,23 +1,31 @@
 const mongoose = require("mongoose");
 
-const expSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    doneBy: {
-      type: [String],
-    },
-    result: {
-      type: [String],
-    },
+const expSchema = new mongoose.Schema({
+  key: {
+    type: String,
   },
-  {
-    timestamps: true,
-  }
-);
+  type: {
+    type: String,
+  },
+  result: {
+    type: Object,
+  },
+  mark: {
+    type: String,
+  },
+  submitted: {
+    type: Boolean,
+    default: false,
+  },
+  created_at: {
+    type: Date,
+    default: Date.now,
+  },
+  updated_at: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
 const experiment = mongoose.model("student", expSchema);
 module.exports = experiment;

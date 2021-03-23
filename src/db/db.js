@@ -1,28 +1,23 @@
 const mongoose = require("mongoose");
 
 const URI =
-  "mongodb+srv://VRLab:VRLab@cluster0.rbfvi.mongodb.net/VRLab?retryWrites=true&w=majority";
+  "mongodb+srv://ajayduth:mEIJrpVmI2tDrvjf@demo-rest-api.lowta.mongodb.net/vrlab?retryWrites=true&w=majority";
 
-// mongoose.connect("mongodb://127.0.0.1:27017/vrLab", {
-//   useNewUrlParser: true,
-//   useCreateIndex: true,
-//   useUnifiedTopology: true,
-//   useFindAndModify: false,
-// });
-
-const connectDB = async () => {
-  await mongoose.connect(URI, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  });
-
-  console.log("db connected");
+const connectionParams = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
 };
-
-// mongoose.connection
-//   .once("open", () => console.log("connection has been made"))
-//   .on("error", (err) => console.log("error is : " + err));
+const connectDB = async () => {
+  await mongoose
+    .connect(URI, connectionParams)
+    .then(() => {
+      console.log("Connected to database ");
+    })
+    .catch((err) => {
+      console.error(`Error connecting to the database. \n${err}`);
+    });
+};
 
 module.exports = connectDB;
