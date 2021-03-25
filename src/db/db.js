@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const URI =
-  "mongodb+srv://ajayduth:mEIJrpVmI2tDrvjf@demo-rest-api.lowta.mongodb.net/vrlab?retryWrites=true&w=majority";
+  "mongodb+srv://ajayduth:tvSws52W2mQP8dNu@cluster0.gd30g.mongodb.net/vrlab?retryWrites=true&w=majority";
 
 const connectionParams = {
   useNewUrlParser: true,
