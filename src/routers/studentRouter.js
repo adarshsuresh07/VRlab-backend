@@ -12,4 +12,5 @@ router.post("/student", async (req, res) => {
   controller.addStud(req, res);
 });
 
+
 module.exports = router;
