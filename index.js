@@ -1,11 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser")
 const connectDB = require("./src/db/db");
+const keys = require("./src/config/keys")
+
 const app = express();
-const port = process.env.PORT || 7000;
+const port = keys.port || 7000;
 const cors = require('cors');
 //database connection
 connectDB();
+
 
 
 
@@ -21,7 +24,6 @@ app.use(cors({origin: '*'}));
 //Routes
 const studentRouter = require("./src/routers/studentRouter");
 const authRouter=require("./src/routers/authRouter");
-const student = require("./src/models/student");
 const teacherRouter = require("./src/routers/teacherRouter");
 
 app.use("/api",authRouter)

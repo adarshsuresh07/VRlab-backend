@@ -5,6 +5,8 @@ const Student=require('../models/student')
 const Teacher=require('../models/teacher')
 const validateRegisterInput = require('../validation/register')
 const validateLoginInput = require('../validation/login')
+const createError = require('http-errors');
+const keys = require("../config/keys")
 
 
 
@@ -83,7 +85,7 @@ const login=(req,res,next)=>{
             }
             bcrypt.compare(password,user.password).then(isMatch=>{
                 if(isMatch){
-                    let token =jwt.sign({email:user.email},'verySecretValue',{expiresIn:'1h'})
+                    let token =jwt.sign({email:user.email},keys.secretOrKey,{expiresIn:'120s'})
                     res.json({
                         message:"Login Successfull",
                         token
@@ -108,7 +110,8 @@ const login=(req,res,next)=>{
             }
             bcrypt.compare(password,user.password).then(isMatch=>{
                 if(isMatch){
-                    let token =jwt.sign({email:user.email},'verySecretValue',{expiresIn:'1h'})
+                    
+                    let token =jwt.sign({email:user.email},keys.secretOrKey,{expiresIn:'120s'})
                     res.json({
                         message:"Login Successfull",
                         token
@@ -127,8 +130,24 @@ const login=(req,res,next)=>{
     }
 
 }
+
+const verifyAccessToken=(req,res,next)=>{
+    if(!req.headers['authorization']) return next(createError.Unauthorized())
+    
+    const authHeader = req.headers['authorization']
+    const bearerToken = authHeader.split(" ")
+    const token = bearerToken[1]
+    jwt.verify(token,keys.secretOrKey,(err,payload)=>{
+        if(err){
+        return next(createError.Unauthorized())}
+
+        req.payload= payload
+        next()
+    })
+}
         
 module.exports={
     register,
-    login
+    login,
+    verifyAccessToken
 }

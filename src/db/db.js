@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
+const keys = require("../config/keys")
 
-const URI =
-  "mongodb+srv://ajayduth:tvSws52W2mQP8dNu@cluster0.gd30g.mongodb.net/vrlab?retryWrites=true&w=majority";
+require('dotenv').config()
 
 const connectionParams = {
   useNewUrlParser: true,
@@ -11,9 +11,10 @@ const connectionParams = {
 };
 const connectDB = async () => {
   await mongoose
-    .connect(URI, connectionParams)
+    .connect(keys.mongoURI, connectionParams)
     .then(() => {
       console.log("Connected to database ");
+
     })
     .catch((err) => {
       console.error(`Error connecting to the database. \n${err}`);

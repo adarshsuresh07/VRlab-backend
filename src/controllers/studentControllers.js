@@ -1,13 +1,4 @@
 const Student = require("../models/student");
-// const readAll = async (req, res) => {
-//   try {
-//     const stud = await Student.find();
-//     res.send(stud);
-//   } catch (e) {
-//     console.log(e);
-//     res.status(500).send();
-//   }
-// };
 
 const readAll =(req,res)=>{
 
