@@ -24,7 +24,15 @@ const register =(req,res,next)=>{
              })
          }
 
+
          if(req.body.user==="student"){
+            const email=req.body.email
+            Student.findOne({email}).then(data=>{
+                if(data){
+                    return res.json({msg:"Email already exist"})
+                }
+            
+
              let user=new Student({
                 fullname:req.body.fullname,
                 email:req.body.email,
@@ -42,8 +50,15 @@ const register =(req,res,next)=>{
                      message:"An error occured"
                  })
              })
+            })
          }
          if(req.body.user==="teacher"){
+            const email=req.body.email
+            Teacher.findOne({email}).then(data=>{
+                if(data){
+                    return res.json({msg:"Email already exist"})
+                }
+
             let user=new Teacher({
                fullname:req.body.fullname,
                email:req.body.email,
@@ -61,6 +76,7 @@ const register =(req,res,next)=>{
                     message:"An error occured"
                 })
             })
+        })
         }
      })
 
