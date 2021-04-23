@@ -9,6 +9,10 @@ router.get("/student",verifyAccessToken, async (req, res) => {
   controller.readAll(req, res);
 });
 
+router.post("/student/:token",verifyAccessToken, (req,res)=>{
+  controller.readOne(req,res);
+})
+
 
 
 

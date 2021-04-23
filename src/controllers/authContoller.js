@@ -100,8 +100,13 @@ const login=(req,res,next)=>{
 
             }
             bcrypt.compare(password,user.password).then(isMatch=>{
+
+                const payload = {
+                    id: user.id,
+                    email: user.email
+                }
                 if(isMatch){
-                    let token =jwt.sign({email:user.email},keys.secretOrKey,{expiresIn:'600s'})
+                    let token =jwt.sign(payload,keys.secretOrKey,{expiresIn:'600s'})
                     res.json({
                         message:"Login Successfull",
                         token
@@ -125,9 +130,13 @@ const login=(req,res,next)=>{
 
             }
             bcrypt.compare(password,user.password).then(isMatch=>{
+                const payload = {
+                    id: user.id,
+                    email: user.email
+                }
                 if(isMatch){
                     
-                    let token =jwt.sign({email:user.email},keys.secretOrKey,{expiresIn:'600s'})
+                    let token =jwt.sign(payload,keys.secretOrKey,{expiresIn:'600s'})
                     res.json({
                         message:"Login Successfull",
                         token
@@ -146,6 +155,8 @@ const login=(req,res,next)=>{
     }
 
 }
+
+
 
 const verifyAccessToken=(req,res,next)=>{
     if(!req.headers['authorization']) return next(createError.Unauthorized())

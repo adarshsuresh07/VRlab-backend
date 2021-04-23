@@ -8,7 +8,9 @@ const { verifyAccessToken } = require("../controllers/authContoller");
 router.get("/teacher",verifyAccessToken, async (req, res) => {
   controller.readAll(req, res);
 });
-
+router.post("/teacher/:token",verifyAccessToken, (req,res)=>{
+  controller.readOne(req,res);
+})
 
 
 
