@@ -106,7 +106,7 @@ const login=(req,res,next)=>{
                     email: user.email
                 }
                 if(isMatch){
-                    let token =jwt.sign(payload,keys.secretOrKey,{expiresIn:'600s'})
+                    let token =jwt.sign(payload,keys.secretOrKey,{expiresIn:'10d'})
                     res.json({
                         message:"Login Successfull",
                         token
@@ -136,7 +136,7 @@ const login=(req,res,next)=>{
                 }
                 if(isMatch){
                     
-                    let token =jwt.sign(payload,keys.secretOrKey,{expiresIn:'600s'})
+                    let token =jwt.sign(payload,keys.secretOrKey,{expiresIn:'10d'})
                     res.json({
                         message:"Login Successfull",
                         token
