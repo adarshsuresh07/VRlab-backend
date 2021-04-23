@@ -96,12 +96,12 @@ const login=(req,res,next)=>{
     if(user==="student"){
         Student.findOne({email}).then(user=>{
             if(!user){
-                return res.status(404).json({msg:"Email not found"})
+                return res.status(400).json({msg:"Email not found"})
 
             }
             bcrypt.compare(password,user.password).then(isMatch=>{
                 if(isMatch){
-                    let token =jwt.sign({email:user.email},keys.secretOrKey,{expiresIn:'120s'})
+                    let token =jwt.sign({email:user.email},keys.secretOrKey,{expiresIn:'600s'})
                     res.json({
                         message:"Login Successfull",
                         token
@@ -127,7 +127,7 @@ const login=(req,res,next)=>{
             bcrypt.compare(password,user.password).then(isMatch=>{
                 if(isMatch){
                     
-                    let token =jwt.sign({email:user.email},keys.secretOrKey,{expiresIn:'120s'})
+                    let token =jwt.sign({email:user.email},keys.secretOrKey,{expiresIn:'600s'})
                     res.json({
                         message:"Login Successfull",
                         token
