@@ -25,10 +25,12 @@ app.use(cors({origin: '*'}));
 const studentRouter = require("./src/routers/studentRouter");
 const authRouter=require("./src/routers/authRouter");
 const teacherRouter = require("./src/routers/teacherRouter");
+const experimentRouter = require("./src/routers/experimentRouter");
 
 app.use("/api",authRouter)
 app.use("/api",studentRouter)
 app.use("/api",teacherRouter)
+app.use("/api",experimentRouter)
 
 
 

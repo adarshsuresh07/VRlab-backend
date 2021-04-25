@@ -18,7 +18,8 @@ const teacherSchema = new mongoose.Schema({
     default: false,
   },
   experiments_started: {
-    type: [{ id: mongoose.ObjectId }],
+    type: []
+    
   },
   created_at: {
     type: Date,

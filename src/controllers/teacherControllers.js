@@ -20,7 +20,9 @@ const readOne=(req,res)=>{
                 fullname: user.fullname,
                 email: user.email,
                 verified: user.verified,
-                experiments_started: user.experiments_started
+                experiments_started: user.experiments_started,
+                created_at:user.created_at,
+                updated_at:user.updated_at
     }
     res.json(userData)
   })

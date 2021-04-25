@@ -18,7 +18,7 @@ const studentSchema = new mongoose.Schema({
     default: false,
   },
   experiments_done: {
-    type: [{ id: mongoose.ObjectId }],
+    type: [],
   },
   created_at: {
     type: Date,
