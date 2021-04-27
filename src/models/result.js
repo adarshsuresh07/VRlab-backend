@@ -1,22 +1,24 @@
-const mongoose= require('mongoose')
+const mongoose = require('mongoose')
 
-const resultSchema= new mongoose.Schema({
+const resultSchema = new mongoose.Schema({
 
     key: {
         type: String
     },
     result: {
-        type: Object
+        type: Object,
+        default: "Result will be available after submission"
     },
     mark: {
         type: String,
+        default: "Marks will be available after submission"
     },
     submitted: {
         type: Boolean,
         default: false
     },
-    done_by:{
-          type: String
+    done_by: {
+        type: String
     },
     created_at: {
         type: Date,

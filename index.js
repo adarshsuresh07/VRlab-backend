@@ -13,24 +13,30 @@ connectDB();
 
 
 // Bodyparser middleware
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 app.use(bodyParser.json())
 
 //Cors acces controll public
 
-app.use(cors({origin: '*'}));
+app.use(cors({
+  origin: '*'
+}));
 
 
 //Routes
 const studentRouter = require("./src/routers/studentRouter");
-const authRouter=require("./src/routers/authRouter");
+const authRouter = require("./src/routers/authRouter");
 const teacherRouter = require("./src/routers/teacherRouter");
 const experimentRouter = require("./src/routers/experimentRouter");
+const resultRouter = require("./src/routers/resultRouter")
 
-app.use("/api",authRouter)
-app.use("/api",studentRouter)
-app.use("/api",teacherRouter)
-app.use("/api",experimentRouter)
+app.use("/api", authRouter)
+app.use("/api", studentRouter)
+app.use("/api", teacherRouter)
+app.use("/api", experimentRouter)
+app.use("/api", resultRouter)
 
 
 
@@ -39,4 +45,3 @@ app.use("/api",experimentRouter)
 app.listen(port, () => {
   console.log("server is running on port " + port);
 });
-
