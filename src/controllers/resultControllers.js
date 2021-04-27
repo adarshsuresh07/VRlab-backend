@@ -15,7 +15,7 @@ const start = (req, res) => {
         key: req.body.key
     }).then(data => {
         if (!data) {
-            return res.json({
+            return res.status(400).json({
                 msg: "Invalid key"
             })
         }
@@ -136,7 +136,7 @@ const submit = (req, res) => {
         new: true
     }).then(submitted => {
         if (!submitted) {
-            res.json({
+            res.status(403).json({
                 msg: 'Already submitted'
             })
         }

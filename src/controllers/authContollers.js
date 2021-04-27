@@ -34,7 +34,7 @@ const register = (req, res, next) => {
                 email
             }).then(data => {
                 if (data) {
-                    return res.json({
+                    return res.status(400).json({
                         msg: "Email already exist"
                     })
                 }
@@ -53,7 +53,7 @@ const register = (req, res, next) => {
                         })
                     })
                     .catch(error => {
-                        res.json({
+                        res.status(400).json({
                             message: "An error occured"
                         })
                     })
@@ -65,7 +65,7 @@ const register = (req, res, next) => {
                 email
             }).then(data => {
                 if (data) {
-                    return res.json({
+                    return res.status(400).json({
                         msg: "Email already exist"
                     })
                 }
@@ -83,7 +83,7 @@ const register = (req, res, next) => {
                         })
                     })
                     .catch(error => {
-                        res.json({
+                        res.status(400).json({
                             message: "An error occured"
                         })
                     })
@@ -112,7 +112,7 @@ const login = (req, res, next) => {
             email
         }).then(user => {
             if (!user) {
-                return res.status(400).json({
+                return res.status(404).json({
                     msg: "Email not found"
                 })
 
@@ -133,7 +133,7 @@ const login = (req, res, next) => {
                     })
 
                 } else {
-                    res.json({
+                    res.status(400).json({
                         message: "password does not match"
                     })
                 }
@@ -168,8 +168,8 @@ const login = (req, res, next) => {
                     })
 
                 } else {
-                    res.json({
-                        message: "password does not match"
+                    res.status(400).json({
+                        message: "Incorrect Password"
                     })
                 }
             })
