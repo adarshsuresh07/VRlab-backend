@@ -1,12 +1,16 @@
 const express = require('express')
 const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
+const jwt_decode = require('jwt-decode')
 const Student = require('../models/student')
 const Teacher = require('../models/teacher')
 const validateRegisterInput = require('../validation/register')
 const validateLoginInput = require('../validation/login')
 const createError = require('http-errors');
 const keys = require("../config/keys")
+const {
+    default: jwtDecode
+} = require('jwt-decode')
 
 
 
@@ -38,6 +42,17 @@ const register = (req, res, next) => {
                         msg: "Email already exist"
                     })
                 }
+                Teacher.findOne({
+                    email
+                }).then(data => {
+                    if (data) {
+                        return res.status(400).json({
+                            msg: "Email already exist"
+                        })
+                    }
+                }).catch(err => {
+                    err
+                })
 
 
                 let user = new Student({
@@ -57,6 +72,8 @@ const register = (req, res, next) => {
                             message: "An error occured"
                         })
                     })
+            }).catch(err => {
+                err
             })
         }
         if (req.body.user === "teacher") {
@@ -69,6 +86,17 @@ const register = (req, res, next) => {
                         msg: "Email already exist"
                     })
                 }
+                Student.findOne({
+                    email
+                }).then(data => {
+                    if (data) {
+                        return res.status(400).json({
+                            msg: "Email already exist"
+                        })
+                    }
+                }).catch(err => {
+                    err
+                })
 
                 let user = new Teacher({
                     fullname: req.body.fullname,
@@ -182,6 +210,8 @@ const login = (req, res, next) => {
 
 
 
+
+
 const verifyAccessToken = (req, res, next) => {
     if (!req.headers['authorization']) return next(createError.Unauthorized())
 
@@ -198,8 +228,11 @@ const verifyAccessToken = (req, res, next) => {
     })
 }
 
+
+
 module.exports = {
     register,
     login,
-    verifyAccessToken
+    verifyAccessToken,
+
 }

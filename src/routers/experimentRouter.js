@@ -1,20 +1,29 @@
-const express=require('express')
-const router=new express.Router;
-const Experiment=require("../models/experiment");
-const controller=require("../controllers/experimentControllers");
-const { verifyAccessToken } = require('../controllers/authContollers');
+const express = require('express')
+const router = new express.Router;
+const Experiment = require("../models/experiment");
+const controller = require("../controllers/experimentControllers");
+const {
+    verifyAccessToken
+} = require('../controllers/authContollers');
 
-router.post("/experiment/create/:token",verifyAccessToken,(req,res)=>{
+router.post("/experiment/teacher/create/:token", verifyAccessToken, (req, res) => {
 
-    controller.createExperiment(req,res);
+    controller.createExperiment(req, res);
+
+})
+
+router.post("/experiment/teacher/read/:token", verifyAccessToken, (req, res) => {
+
+    controller.viewExperimentsByTeacher(req, res);
 
 })
 
-router.post("/experiment/read/:token",verifyAccessToken,(req,res)=>{
+router.post("/experiment/student/read/:token", verifyAccessToken, (req, res) => {
 
-    controller.viewExperiments(req,res);
+    controller.viewExperimentsByStudent(req, res);
 
 })
+
 
 
 module.exports = router;
