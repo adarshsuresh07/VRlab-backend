@@ -64,12 +64,12 @@ const register = (req, res, next) => {
                 user.save()
                     .then(user => {
                         res.json({
-                            message: "Student added Successfully"
+                            msg: "Student added Successfully"
                         })
                     })
                     .catch(error => {
                         res.status(400).json({
-                            message: "An error occured"
+                            msg: "An error occured"
                         })
                     })
             }).catch(err => {
@@ -107,12 +107,12 @@ const register = (req, res, next) => {
                 user.save()
                     .then(user => {
                         res.json({
-                            message: "Teacher added Successfully"
+                            msg: "Teacher added Successfully"
                         })
                     })
                     .catch(error => {
                         res.status(400).json({
-                            message: "An error occured"
+                            msg: "An error occured"
                         })
                     })
             })
@@ -156,13 +156,13 @@ const login = (req, res, next) => {
                         expiresIn: '10d'
                     })
                     res.json({
-                        message: "Login Successfull",
+                        msg: "Login Successfull",
                         token
                     })
 
                 } else {
                     res.status(400).json({
-                        message: "password does not match"
+                        msg: "password does not match"
                     })
                 }
             })
@@ -191,13 +191,13 @@ const login = (req, res, next) => {
                         expiresIn: '10d'
                     })
                     res.json({
-                        message: "Login Successfull",
+                        msg: "Login Successfull",
                         token
                     })
 
                 } else {
                     res.status(400).json({
-                        message: "Incorrect Password"
+                        msg: "Incorrect Password"
                     })
                 }
             })
