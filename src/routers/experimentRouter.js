@@ -24,6 +24,12 @@ router.post("/experiment/student/read/:token", verifyAccessToken, (req, res) => 
 
 })
 
+router.post("/experiment/student/start/:token", verifyAccessToken, (req, res) => {
+
+    controller.startExperiment(req, res);
+
+})
+
 
 
 module.exports = router;

@@ -50,6 +50,29 @@ const createExperiment = (req, res) => {
 
 }
 
+const startExperiment = (req, res) => {
+
+    const decoded = jwt_decode(req.params.token)
+
+    Experiment.findOne({
+        key: req.body.key
+    }).then(data => {
+
+
+
+        res.json({
+            type: data.type
+        })
+    }).catch(err => {
+        res.status(400).json({
+            msg: "Invalid key",
+            err
+        })
+    })
+}
+
+
+
 const viewExperimentsByTeacher = (req, res) => {
 
     const decoded = jwt_decode(req.params.token)
@@ -206,6 +229,7 @@ const viewExperimentsByStudent = (req, res) => {
 module.exports = {
     createExperiment: createExperiment,
     viewExperimentsByTeacher: viewExperimentsByTeacher,
-    viewExperimentsByStudent: viewExperimentsByStudent
+    viewExperimentsByStudent: viewExperimentsByStudent,
+    startExperiment: startExperiment
 
 }
