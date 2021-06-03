@@ -13,8 +13,8 @@ const start = (req, res) => {
     const decoded = jwt_decode(req.params.token)
     Experiment.findOne({
         key: req.body.key
-    }).then(data => {
-        if (!data) {
+    }).then(data1 => {
+        if (!data1) {
             return res.status(400).json({
                 msg: "Invalid key"
             })
@@ -33,7 +33,7 @@ const start = (req, res) => {
 
                 let result = new Result({
                     key: req.body.key,
-                    done_by: decoded.email
+                    done_by: decoded.email,
 
                 })
 
@@ -41,7 +41,8 @@ const start = (req, res) => {
 
                     res.json({
                         result,
-                        msg: "New Result field addded using given data"
+                        msg: "Starting experiment for the first time",
+                        type: data1.type
                     })
 
 
@@ -54,6 +55,8 @@ const start = (req, res) => {
 
             }
 
+
+
             const resultData = {
                 key: data.key,
                 result: data.result,
@@ -63,7 +66,11 @@ const start = (req, res) => {
                 created_at: data.created_at,
                 updated_at: data.updated_at
             }
-            res.json(resultData)
+            res.json({
+                resultData: resultData,
+                msg: "welcome back, your results are loaded",
+                type: data1.type
+            })
 
 
         }).catch(err => {

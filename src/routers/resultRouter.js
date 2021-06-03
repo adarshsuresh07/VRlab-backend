@@ -6,17 +6,17 @@ const {
     verifyAccessToken
 } = require('../controllers/authContollers');
 
-router.post("/result/start/:token", verifyAccessToken, (req, res) => {
+router.post("/result/start/:token", (req, res) => {
 
     controller.start(req, res);
 
 })
-router.post("/result/save/:token", verifyAccessToken, (req, res) => {
+router.post("/result/save/:token", (req, res) => {
 
     controller.save(req, res);
 
 })
-router.post("/result/submit/:token", verifyAccessToken, (req, res) => {
+router.post("/result/submit/:token", (req, res) => {
 
     controller.submit(req, res);
 
