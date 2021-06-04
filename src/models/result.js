@@ -6,8 +6,8 @@ const resultSchema = new mongoose.Schema({
         type: String
     },
     result: {
-        type: Object,
-        default: "Result will be available after submission"
+        type: Array,
+        default: []
     },
     mark: {
         type: String,
